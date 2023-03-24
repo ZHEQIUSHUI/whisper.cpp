@@ -156,7 +156,7 @@ ifneq ($(filter armv6%,$(UNAME_M)),)
 endif
 ifneq ($(filter armv7%,$(UNAME_M)),)
 	# Raspberry Pi 4
-	CFLAGS += -mfpu=neon-fp-armv8 -mfp16-format=ieee -mno-unaligned-access -funsafe-math-optimizations
+	CFLAGS += -mfpu=neon-fp16 -mfp16-format=ieee -mno-unaligned-access -funsafe-math-optimizations
 endif
 ifneq ($(filter armv8%,$(UNAME_M)),)
 	# Raspberry Pi 4

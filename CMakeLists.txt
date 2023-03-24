@@ -100,6 +100,8 @@ if (APPLE AND NOT WHISPER_NO_ACCELERATE)
 endif()
 
 if (WHISPER_SUPPORT_OPENBLAS)
+    include_directories(openblas_ax650/include/openblas)
+    set(CMAKE_LIBRARY_PATH openblas_ax650/lib)
     find_library(OPENBLAS_LIB
         NAMES openblas libopenblas
         )
@@ -111,6 +113,8 @@ if (WHISPER_SUPPORT_OPENBLAS)
     else()
         message(WARNING "OpenBLAS not found")
     endif()
+else()
+    message(STATUS "OpenBLAS disable")
 endif()
 
 # compiler flags
@@ -189,7 +193,7 @@ endif()
 
 set(TARGET whisper)
 
-add_library(${TARGET}
+add_library(${TARGET} STATIC
     ggml.h
     ggml.c
     whisper.h
